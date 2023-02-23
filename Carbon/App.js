@@ -1,20 +1,31 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import * as React from 'react';
+import { StyleSheet, View, Text } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-export default function App() {
+import WelcomeQuiz from './Login/WelcomeQuiz.js'
+import Rank from './Login/Rank.js'
+import Home from './Login/Home.js'
+import Budget from './DataEntry/Budget.js'
+import Education from './Education/Education.js'
+
+const Stack = createNativeStackNavigator();
+
+function App() {
   return (
-    <View style={styles.container}>
-      <Text>Welcome to Carbon!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="WelcomeQuiz">
+      <Stack.Screen name="WelcomeQuiz" component={WelcomeQuiz} />
+      <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="Budget" component={Budget} />
+      <Stack.Screen name="Rank" component={Rank} />
+      <Stack.Screen name="Education" component={Education} />
+
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
+
+
